@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TECH STORE | Premium Electronics</title>
-    <meta name="description" content="Shop premium electronics at TECH STORE.">
+    <meta name="description" content="Smartphones, laptops, gaming and accessories with delivery across Tunisia. Order in minutes on WhatsApp.">
 
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
@@ -21,7 +21,7 @@
 <!-- ANNOUNCEMENT -->
 <div class="announcement">
     <i class="fa-solid fa-bolt"></i>
-    SPECIAL OFFER: FREE SHIPPING ON SELECTED ORDERS
+    <span id="announcementText"></span>
 </div>
 
 <!-- HEADER -->
@@ -41,6 +41,12 @@
         </div>
 
         <div class="header-actions">
+
+            <select class="lang-select" id="langSelect" aria-label="Language">
+                <option value="en">EN</option>
+                <option value="fr">FR</option>
+                <option value="ar">عربي</option>
+            </select>
 
             <button class="header-icon" id="wishlistButton">
                 <i class="fa-regular fa-heart"></i>
@@ -117,15 +123,15 @@
         <i class="fa-solid fa-truck-fast"></i>
         <div>
             <h3>Fast Delivery</h3>
-            <p>Quick & secure shipping</p>
+            <p id="featDelivery">Delivery across Tunisia</p>
         </div>
     </div>
 
     <div class="feature">
         <i class="fa-solid fa-shield-halved"></i>
         <div>
-            <h3>Official Warranty</h3>
-            <p>Quality you can trust</p>
+            <h3>Warranty Included</h3>
+            <p id="featWarranty">Warranty on every device</p>
         </div>
     </div>
 
@@ -133,7 +139,7 @@
         <i class="fa-solid fa-headset"></i>
         <div>
             <h3>Customer Support</h3>
-            <p>We're here to help</p>
+            <p>Chat with us on WhatsApp</p>
         </div>
     </div>
 
@@ -208,11 +214,11 @@
 
     <div class="offer-content">
 
-        <span>LIMITED TIME OFFER</span>
+        <span>CURRENT DEALS</span>
 
         <h2>
             Upgrade Your Setup
-            <strong>Save More Today!</strong>
+            <strong>Save up to <b id="offerSave"></b>%</strong>
         </h2>
 
         <p>Discover exclusive deals and amazing technology.</p>
@@ -237,10 +243,10 @@
 
     <p>Discover the latest products and exclusive deals.</p>
 
-    <form id="newsletterForm">
-        <input type="email" placeholder="Your email address" required>
-        <button type="submit">SUBSCRIBE</button>
-    </form>
+    <a class="btn-primary" target="_blank" rel="noopener"
+       data-wa="Hello TECH STORE, please send me your latest deals.">
+        <i class="fa-brands fa-whatsapp"></i> GET DEALS ON WHATSAPP
+    </a>
 
 </section>
 
@@ -259,13 +265,13 @@
                 Your destination for premium electronics,
                 innovative gadgets and the latest technology.
             </p>
-
             <div class="social-links">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.facebook.com/share/19cyJ1QrpV/"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                <a data-wa="Hello TECH STORE!" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
-
+            
         </div>
 
         <div class="footer-column">
@@ -277,14 +283,14 @@
 
         <div class="footer-column">
             <h3>Customer Service</h3>
-            <a href="#">FAQ</a>
-            <a href="#">Shipping Policy</a>
-            <a href="#">Return Policy</a>
+            <a href="#" data-open="policyModal">Shipping &amp; Delivery</a>
+            <a href="#" data-open="policyModal">Returns &amp; Warranty</a>
+            <a data-wa="Hello TECH STORE, I have a question." target="_blank" rel="noopener">Ask on WhatsApp</a>
         </div>
 
         <div class="footer-column">
             <h3>Contact Us</h3>
-            <p>+216 46 896 506</p>
+            <a href="tel:+21654081274">+216 54 081 274</a>
             <p>Tunisia</p>
         </div>
 
@@ -292,6 +298,8 @@
 
     <div class="footer-bottom">
         © 2026 TECH STORE. All Rights Reserved.
+        <br>
+        <strong> Mercie Tayahi mouhamed <mark>Amine</mark></strong>
     </div>
 
 </footer>
@@ -373,6 +381,7 @@
                 <option>Ben Arous</option>
                 <option>Manouba</option>
                 <option>Nabeul</option>
+                <option>Zaghouan</option>
                 <option>Bizerte</option>
                 <option>Beja</option>
                 <option>Jendouba</option>
@@ -401,6 +410,8 @@
                 <h3>Order Summary</h3>
                 <div id="checkoutItems"></div>
 
+                <div class="summary-item"><span>Delivery</span><strong id="checkoutShipping"></strong></div>
+
                 <div class="cart-total">
                     <span>Total:</span>
                     <strong id="checkoutTotal">0 DT</strong>
@@ -412,11 +423,23 @@
                 CONFIRM VIA WHATSAPP
             </button>
 
+            <p class="checkout-note">We confirm every order with you on WhatsApp before shipping.</p>
+
         </form>
 
     </div>
 
 </div>
+
+<!-- POLICY MODAL -->
+<div class="modal-overlay" id="policyModal">
+    <div class="modal policy-modal">
+        <button class="modal-close" data-close="policyModal"><i class="fa-solid fa-xmark"></i></button>
+        <div id="policyBody"></div>
+    </div>
+</div>
+
+<a class="wa-float" data-wa="Hello TECH STORE, I have a question." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 
 <!-- JAVASCRIPT -->
 <script src="script.js"></script>
