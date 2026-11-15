@@ -2,7 +2,123 @@
 // TECH STORE - COMPLETE ECOMMERCE SYSTEM
 // ========================================
 
-const WHATSAPP_NUMBER = "21646896506";
+const WHATSAPP_NUMBER = "21654081274";
+
+// === EDIT THESE TO MATCH YOUR REAL POLICY ===
+const FREE_SHIPPING_MIN = 500;  // DT: free delivery from this subtotal
+const SHIPPING_FEE = 8;         // DT: delivery fee below the minimum
+const DELIVERY_TIME = "24–72h";
+const WARRANTY_MONTHS = 12;
+const RETURN_DAYS = 7;
+const SHOW_RATINGS = false;     // true only with real customer reviews
+
+// ========================================
+// LANGUAGES: EN / FR / AR  (English text -> translation)
+// ========================================
+
+const LANGS = ["en", "fr", "ar"];
+let L = Math.max(0, LANGS.indexOf(loadStorage("techLang", null) || navigator.language.slice(0, 2)));
+
+const T = Object.fromEntries(`Search products...|Rechercher des produits...|ابحث عن منتج...
+Home|Accueil|الرئيسية
+Categories|Catégories|الأصناف
+Shop|Boutique|المتجر
+Special Offers|Offres spéciales|عروض خاصة
+THE FUTURE OF TECHNOLOGY|L'AVENIR DE LA TECHNOLOGIE|مستقبل التكنولوجيا
+Upgrade Your|Améliorez votre|طوّر
+Digital World|univers numérique|عالمك الرقمي
+Discover the latest technology, premium electronics and exclusive deals at TECH STORE.|Découvrez les dernières technologies, l'électronique haut de gamme et des offres exclusives chez TECH STORE.|اكتشف أحدث التقنيات والأجهزة الإلكترونية المميزة وعروضًا حصرية في TECH STORE.
+SHOP NOW|ACHETER|تسوّق الآن
+EXPLORE CATEGORIES|VOIR LES CATÉGORIES|استكشف الأصناف
+Fast Delivery|Livraison rapide|توصيل سريع
+Warranty Included|Garantie incluse|الضمان مشمول
+Customer Support|Assistance client|دعم الزبائن
+Chat with us on WhatsApp|Écrivez-nous sur WhatsApp|راسلنا عبر واتساب
+BROWSE COLLECTION|PARCOURIR LA COLLECTION|تصفّح المجموعة
+Shop By Category|Acheter par catégorie|تسوّق حسب الصنف
+Smartphones|Smartphones|الهواتف الذكية
+Laptops|Ordinateurs portables|الحواسيب المحمولة
+Gaming|Gaming|الألعاب
+Accessories|Accessoires|الملحقات
+HANDPICKED FOR YOU|SÉLECTIONNÉS POUR VOUS|مختارة لك
+Featured Products|Produits en vedette|منتجات مميزة
+All|Tout|الكل
+Phones|Téléphones|الهواتف
+No products found.|Aucun produit trouvé.|لا توجد منتجات.
+CURRENT DEALS|OFFRES EN COURS|العروض الحالية
+Upgrade Your Setup|Améliorez votre installation|طوّر تجهيزاتك
+Save up to|Économisez jusqu'à|وفّر حتى
+Discover exclusive deals and amazing technology.|Découvrez des offres exclusives et une technologie exceptionnelle.|اكتشف عروضًا حصرية وتقنيات مذهلة.
+EXPLORE DEALS|VOIR LES OFFRES|استكشف العروض
+Stay Updated With|Restez informé avec|ابقَ على اطلاع مع
+Discover the latest products and exclusive deals.|Découvrez les derniers produits et nos offres exclusives.|اكتشف أحدث المنتجات والعروض الحصرية.
+GET DEALS ON WHATSAPP|RECEVOIR LES OFFRES SUR WHATSAPP|احصل على العروض عبر واتساب
+Your destination for premium electronics, innovative gadgets and the latest technology.|Votre destination pour l'électronique haut de gamme, les gadgets innovants et les dernières technologies.|وجهتك للأجهزة الإلكترونية المميزة والأدوات المبتكرة وأحدث التقنيات.
+Quick Links|Liens rapides|روابط سريعة
+Customer Service|Service client|خدمة الزبائن
+Shipping & Delivery|Livraison|الشحن والتوصيل
+Returns & Warranty|Retours et garantie|الإرجاع والضمان
+Ask on WhatsApp|Une question ? WhatsApp|اسأل عبر واتساب
+Contact Us|Contact|اتصل بنا
+Tunisia|Tunisie|تونس
+© 2026 TECH STORE. All Rights Reserved.|© 2026 TECH STORE. Tous droits réservés.|© 2026 TECH STORE. جميع الحقوق محفوظة.
+Shopping Cart|Panier|سلة التسوق
+Total:|Total :|المجموع:
+PROCEED TO CHECKOUT|PASSER LA COMMANDE|إتمام الطلب
+Complete Your Order|Finaliser votre commande|أكمل طلبك
+Enter your information to confirm your order.|Saisissez vos informations pour confirmer la commande.|أدخل معلوماتك لتأكيد الطلب.
+Full Name|Nom complet|الاسم الكامل
+Phone Number|Numéro de téléphone|رقم الهاتف
+Governorate|Gouvernorat|الولاية
+Select Governorate|Choisir le gouvernorat|اختر الولاية
+Full Address|Adresse complète|العنوان الكامل
+Your delivery address|Votre adresse de livraison|عنوان التوصيل
+Order Summary|Récapitulatif|ملخص الطلب
+Delivery|Livraison|التوصيل
+CONFIRM VIA WHATSAPP|CONFIRMER SUR WHATSAPP|تأكيد عبر واتساب
+We confirm every order with you on WhatsApp before shipping.|Nous confirmons chaque commande avec vous sur WhatsApp avant l'expédition.|نؤكد كل طلب معك عبر واتساب قبل الشحن.
+FREE DELIVERY OVER {min} · {time} ACROSS TUNISIA|LIVRAISON GRATUITE DÈS {min} · {time} DANS TOUTE LA TUNISIE|توصيل مجاني فوق {min} · {time} في كامل تونس
+Delivery across Tunisia in {time}|Livraison partout en Tunisie en {time}|توصيل لكامل تونس خلال {time}
+{n}-month warranty on every device|Garantie de {n} mois sur chaque appareil|ضمان {n} شهر على كل جهاز
+Delivery across Tunisia in {time}. Free above {min}, otherwise {fee}. We confirm each order with you on WhatsApp before shipping.|Livraison partout en Tunisie en {time}. Gratuite dès {min}, sinon {fee}. Nous confirmons chaque commande avec vous sur WhatsApp avant l'expédition.|توصيل لكامل تونس خلال {time}. مجاني فوق {min}، وإلا {fee}. نؤكد كل طلب معك عبر واتساب قبل الشحن.
+Every device comes with a {m}-month warranty. Unused items in their original packaging can be returned within {d} days. Contact us on WhatsApp to start a return.|Chaque appareil est garanti {m} mois. Les articles non utilisés, dans leur emballage d'origine, peuvent être retournés sous {d} jours. Contactez-nous sur WhatsApp pour lancer un retour.|كل جهاز مشمول بضمان {m} شهر. يمكن إرجاع المنتجات غير المستعملة في علبتها الأصلية خلال {d} أيام. راسلنا عبر واتساب لبدء الإرجاع.
+Reviews|avis|تقييمات
+VIEW DETAILS|VOIR LES DÉTAILS|عرض التفاصيل
+Select Color|Choisir la couleur|اختر اللون
+ADD TO CART|AJOUTER AU PANIER|أضف إلى السلة
+Your cart is empty.|Votre panier est vide.|سلتك فارغة.
+FREE|GRATUITE|مجاني
+Your shopping cart is empty!|Votre panier est vide !|سلتك فارغة!
+Please complete all required fields.|Veuillez remplir tous les champs obligatoires.|يرجى ملء جميع الحقول المطلوبة.
+Please enter a valid Tunisian phone number (8 digits).|Veuillez saisir un numéro tunisien valide (8 chiffres).|يرجى إدخال رقم هاتف تونسي صحيح (8 أرقام).
+BEST SELLER|MEILLEURE VENTE|الأكثر مبيعًا
+NEW|NOUVEAU|جديد
+SALE|PROMO|تخفيض
+POPULAR|POPULAIRE|رائج
+Natural Titanium|Titane naturel|تيتانيوم طبيعي
+Black Titanium|Titane noir|تيتانيوم أسود
+White Titanium|Titane blanc|تيتانيوم أبيض
+Desert Titanium|Titane désert|تيتانيوم صحراوي
+Space Black|Noir sidéral|أسود فضائي
+Silver|Argent|فضي
+Black|Noir|أسود
+White|Blanc|أبيض
+Titanium|Titane|تيتانيوم
+Experience premium performance with the iPhone 16 Pro Max.|Des performances haut de gamme avec l'iPhone 16 Pro Max.|استمتع بأداء متميز مع iPhone 16 Pro Max.
+Powerful performance for professional work and creativity.|Des performances puissantes pour le travail professionnel et la créativité.|أداء قوي للعمل الاحترافي والإبداع.
+Premium wireless headphones with noise cancellation.|Casque sans fil haut de gamme avec réduction de bruit.|سماعات لاسلكية مميزة بخاصية إلغاء الضوضاء.
+Advanced smartwatch designed for everyday performance.|Montre connectée avancée conçue pour un usage quotidien.|ساعة ذكية متطورة مصممة للاستخدام اليومي.
+Comfortable wireless gaming controller.|Manette de jeu sans fil confortable.|يد تحكم ألعاب لاسلكية مريحة.
+High quality wireless sound for everyday use.|Son sans fil de haute qualité pour tous les jours.|صوت لاسلكي عالي الجودة للاستخدام اليومي.`.split("\n").map(line => {
+    const [en, fr, ar] = line.split("|");
+    return [en, [fr, ar]];
+}));
+
+const GOV = [null, "Tunis|Ariana|Ben Arous|La Manouba|Nabeul|Zaghouan|Bizerte|Béja|Jendouba|Le Kef|Siliana|Sousse|Monastir|Mahdia|Sfax|Kairouan|Kasserine|Sidi Bouzid|Gabès|Médenine|Tataouine|Gafsa|Tozeur|Kébili".split("|"), "تونس|أريانة|بن عروس|منوبة|نابل|زغوان|بنزرت|باجة|جندوبة|الكاف|سليانة|سوسة|المنستير|المهدية|صفاقس|القيروان|القصرين|سيدي بوزيد|قابس|مدنين|تطاوين|قفصة|توزر|قبلي".split("|")];
+
+const t = s => (L && T[s] && T[s][L - 1]) || s;
+const tf = (s, o) => t(s).replace(/\{(\w+)\}/g, (m, k) => o[k]);
+const catLabel = p => t(p.category[0].toUpperCase() + p.category.slice(1)).toUpperCase();
 
 const products = [
 
@@ -169,6 +285,10 @@ function cartTotal() {
 
 }
 
+function shippingFee() {
+    return cartTotal() >= FREE_SHIPPING_MIN ? 0 : SHIPPING_FEE;
+}
+
 function saveCart() {
 
     localStorage.setItem("techCart", JSON.stringify(cart));
@@ -203,7 +323,7 @@ function renderProducts(list = products) {
             <div class="product-image" data-details="${product.id}">
 
                 <span class="product-badge">
-                    ${escapeHTML(product.badge)}
+                    ${escapeHTML(t(product.badge))}
                 </span>
 
                 <img src="${product.images[0]}"
@@ -215,16 +335,16 @@ function renderProducts(list = products) {
             <div class="product-info">
 
                 <span class="product-category">
-                    ${escapeHTML(product.category.toUpperCase())}
+                    ${escapeHTML(catLabel(product))}
                 </span>
 
                 <h3>${escapeHTML(product.name)}</h3>
 
-                <div class="rating">
+                ${SHOW_RATINGS ? `<div class="rating">
                     <i class="fa-solid fa-star"></i>
                     ${product.rating}
-                    <span>(${product.reviews} Reviews)</span>
-                </div>
+                    <span>(${product.reviews} ${t("Reviews")})</span>
+                </div>` : ""}
 
                 <div class="price">
                     <strong>${money(product.price)}</strong>
@@ -241,7 +361,7 @@ function renderProducts(list = products) {
 
                     <button class="add-cart"
                             data-details="${product.id}">
-                        VIEW DETAILS
+                        ${t("VIEW DETAILS")}
                     </button>
 
                 </div>
@@ -474,19 +594,19 @@ function openProduct(id) {
             <div class="detail-info">
 
                 <span class="section-label">
-                    ${escapeHTML(product.category.toUpperCase())}
+                    ${escapeHTML(catLabel(product))}
                 </span>
 
                 <h2>${escapeHTML(product.name)}</h2>
 
-                <div class="rating">
+                ${SHOW_RATINGS ? `<div class="rating">
                     <i class="fa-solid fa-star"></i>
                     ${product.rating}
-                    (${product.reviews} Reviews)
-                </div>
+                    (${product.reviews} ${t("Reviews")})
+                </div>` : ""}
 
                 <p class="detail-description">
-                    ${escapeHTML(product.description)}
+                    ${escapeHTML(t(product.description))}
                 </p>
 
                 <div class="price">
@@ -494,14 +614,14 @@ function openProduct(id) {
                     <del>${money(product.oldPrice)}</del>
                 </div>
 
-                <h4>Select Color</h4>
+                <h4>${t("Select Color")}</h4>
 
                 <div class="color-options">
 
                     ${product.colors.map((color, index) => `
                         <button class="color-option ${index === 0 ? "active" : ""}"
                                 data-color="${escapeHTML(color)}">
-                            ${escapeHTML(color)}
+                            ${escapeHTML(t(color))}
                         </button>
                     `).join("")}
 
@@ -509,7 +629,7 @@ function openProduct(id) {
 
                 <button class="checkout-btn detail-add" id="detailAdd">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    ADD TO CART
+                    ${t("ADD TO CART")}
                 </button>
 
             </div>
@@ -613,6 +733,9 @@ function addToCart(id, color) {
 
 function updateCart() {
 
+    cart = cart.filter(item => getProduct(item.id));
+    cart.forEach(item => { item.price = getProduct(item.id).price; });
+
     let count = 0;
 
     cart.forEach(item => count += item.quantity);
@@ -626,7 +749,7 @@ function updateCart() {
     if (!cart.length) {
 
         container.innerHTML = `
-            <p class="empty-cart">Your cart is empty.</p>
+            <p class="empty-cart">${t("Your cart is empty.")}</p>
         `;
 
         return;
@@ -643,7 +766,7 @@ function updateCart() {
 
                 <h4>${escapeHTML(item.name)}</h4>
 
-                <p>${escapeHTML(item.color)}</p>
+                <p>${escapeHTML(t(item.color))}</p>
 
                 <p>${money(item.price)}</p>
 
@@ -812,7 +935,7 @@ function renderCheckout() {
 
             <span>
                 ${escapeHTML(item.name)}
-                (${escapeHTML(item.color)})
+                (${escapeHTML(t(item.color))})
                 × ${item.quantity}
             </span>
 
@@ -822,7 +945,8 @@ function renderCheckout() {
 
     `).join("");
 
-    $("#checkoutTotal").textContent = money(cartTotal());
+    $("#checkoutShipping").textContent = shippingFee() ? money(shippingFee()) : t("FREE");
+    $("#checkoutTotal").textContent = money(cartTotal() + shippingFee());
 
 }
 
@@ -830,7 +954,7 @@ $("#checkoutBtn").addEventListener("click", () => {
 
     if (!cart.length) {
 
-        alert("Your shopping cart is empty!");
+        alert(t("Your shopping cart is empty!"));
 
         return;
 
@@ -855,7 +979,7 @@ $("#checkoutForm").addEventListener("submit", event => {
 
     if (!cart.length) {
 
-        alert("Your shopping cart is empty!");
+        alert(t("Your shopping cart is empty!"));
 
         closeModal("checkoutModal");
 
@@ -873,10 +997,15 @@ $("#checkoutForm").addEventListener("submit", event => {
 
     if (!name || !phone || !governorate || !address) {
 
-        alert("Please complete all required fields.");
+        alert(t("Please complete all required fields."));
 
         return;
 
+    }
+
+    if (!/^(\+?216)?[2-9]\d{7}$/.test(phone.replace(/[\s-]/g, ""))) {
+        alert(t("Please enter a valid Tunisian phone number (8 digits)."));
+        return;
     }
 
     const orderNumber = "TS-" + Date.now().toString().slice(-8);
@@ -916,7 +1045,8 @@ ${index + 1}. ${item.name}
     message += `
 ━━━━━━━━━━━━━━━━
 
-💰 *TOTAL: ${money(cartTotal())}*
+🚚 Delivery: ${shippingFee() ? money(shippingFee()) : "FREE"}
+💰 *TOTAL: ${money(cartTotal() + shippingFee())}*
 
 Thank you for choosing TECH STORE!
 `;
@@ -962,17 +1092,72 @@ $("#navigation").querySelectorAll("a").forEach(link => {
 
 
 // ========================================
-// NEWSLETTER
+// CONFIG BINDINGS
 // ========================================
 
-$("#newsletterForm").addEventListener("submit", event => {
+document.querySelectorAll("[data-wa]").forEach(link => {
+    link.href = "https://wa.me/" + WHATSAPP_NUMBER +
+        "?text=" + encodeURIComponent(link.dataset.wa);
+});
 
-    event.preventDefault();
+function renderConfigText() {
+    const time = L === 2 ? DELIVERY_TIME.replace("h", " ساعة") : DELIVERY_TIME;
+    $("#announcementText").textContent = tf("FREE DELIVERY OVER {min} · {time} ACROSS TUNISIA", {min: money(FREE_SHIPPING_MIN), time});
+    $("#featDelivery").textContent = tf("Delivery across Tunisia in {time}", {time});
+    $("#featWarranty").textContent = tf("{n}-month warranty on every device", {n: WARRANTY_MONTHS});
+    $("#offerSave").textContent =
+        Math.max(...products.map(p => Math.round((1 - p.price / p.oldPrice) * 100)));
+    $("#policyBody").innerHTML = `
+        <h2>${t("Shipping & Delivery")}</h2>
+        <p>${tf("Delivery across Tunisia in {time}. Free above {min}, otherwise {fee}. We confirm each order with you on WhatsApp before shipping.", {time, min: money(FREE_SHIPPING_MIN), fee: money(SHIPPING_FEE)})}</p>
+        <h2>${t("Returns & Warranty")}</h2>
+        <p>${tf("Every device comes with a {m}-month warranty. Unused items in their original packaging can be returned within {d} days. Contact us on WhatsApp to start a return.", {m: WARRANTY_MONTHS, d: RETURN_DAYS})}</p>`;
+}
 
-    alert("Thank you for subscribing to TECH STORE!");
+function applyLang() {
+    const root = document.documentElement;
+    root.lang = LANGS[L];
+    root.dir = L === 2 ? "rtl" : "ltr";
+    $("#langSelect").value = LANGS[L];
 
-    event.target.reset();
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    for (let node; (node = walker.nextNode());) {
+        if (node.parentElement.closest("script, #productGrid, #cartItems, #productDetails, #checkoutItems, #policyBody")) continue;
+        node.__en ??= node.nodeValue;
+        const key = node.__en.trim().replace(/\s+/g, " ");
+        if (key in T) {
+            node.nodeValue = L ? node.__en.replace(/\S[\s\S]*\S|\S/, () => t(key)) : node.__en;
+        }
+    }
 
+    document.querySelectorAll("[placeholder]").forEach(el => {
+        el.__ph ??= el.placeholder;
+        el.placeholder = t(el.__ph);
+    });
+
+    document.querySelectorAll("#customerGovernorate option:not([value=''])").forEach((option, i) => {
+        option.textContent = L ? GOV[L][i] : option.value;
+    });
+
+    renderConfigText();
+    applyFilters();
+    updateCart();
+    renderCheckout();
+
+    if ($("#productModal").classList.contains("show")) openProduct(selectedProduct.id);
+}
+
+$("#langSelect").addEventListener("change", event => {
+    L = LANGS.indexOf(event.target.value);
+    localStorage.setItem("techLang", JSON.stringify(event.target.value));
+    applyLang();
+});
+
+document.querySelectorAll("[data-open]").forEach(link => {
+    link.addEventListener("click", event => {
+        event.preventDefault();
+        openModal(link.dataset.open);
+    });
 });
 
 
@@ -980,8 +1165,8 @@ $("#newsletterForm").addEventListener("submit", event => {
 // INITIALIZATION
 // ========================================
 
-renderProducts();
+document.querySelectorAll("#customerGovernorate option").forEach(o => o.setAttribute("value", o.value));
 
-updateCart();
+applyLang();
 
 updateFavorites();
